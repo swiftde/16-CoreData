@@ -16,7 +16,7 @@ class BuchTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let nachname = person?.nachname {
+        if let nachname = person?.nachname! {
             title = nachname
         }
         loadDataFromDB()
