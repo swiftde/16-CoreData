@@ -30,25 +30,25 @@ class BuchTVC: UITableViewController {
         tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return daten.count
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-        cell.textLabel.text = daten[indexPath.row].titel
+        cell.textLabel?.text = daten[indexPath.row].titel
         return cell
     }
     
-    override func tableView(tableView: UITableView!, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath!) -> String! {
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
         return "Löschen"
     }
     
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             person?.removeBuecherObject(daten[indexPath.row])
             context.save(nil)
@@ -72,7 +72,7 @@ class BuchTVC: UITableViewController {
             action in
             // Person hinzufügen
             var newBuch = NSEntityDescription.insertNewObjectForEntityForName("Buch", inManagedObjectContext: self.context) as Buch
-            newBuch.titel = (alert.textFields[0] as UITextField).text
+            newBuch.titel = (alert.textFields?[0] as UITextField).text
             self.person?.addBuecherObject(newBuch)
             self.context.save(nil)
             self.loadDataFromDB()
